@@ -1,4 +1,6 @@
 @import './App.css';
+@import './Register.css';
+@import './Main.css';
 
 body {
   margin: 0;
