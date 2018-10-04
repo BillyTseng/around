@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
 import { Header } from './Header';
 import { Main } from './Main';
+import { TOKEN_KEY } from "../constant"
 
 class App extends Component {
     state = {
         isLoggedIn: false
     }
 
-    handleLogin = () => {
+    handleLogin = (response) => {
+        localStorage.setItem(TOKEN_KEY, response);
         this.setState({ isLoggedIn: true});
     }
 
     handleLogout = () => {
+        localStorage.removeItem(TOKEN_KEY)
         this.setState({ isLoggedIn: false});
     }
 

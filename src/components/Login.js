@@ -22,7 +22,7 @@ class NormalLoginForm extends React.Component {
                 }).then(
                     (response) => {
                         console.log(response);
-                        this.props.handleLogin();
+                        this.props.handleLogin(response);
                         },
                     (response) => { message.error(response.responseText); }
                 )
