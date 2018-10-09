@@ -1,5 +1,6 @@
 import React from 'react';
 import { Tabs, Button, Spin } from 'antd';
+import $ from 'jquery';
 import { GEO_OPTIONS, POS_KEY } from "../constant";
 import { Gallery } from "./Gallery"
 
@@ -9,6 +10,8 @@ const operations = <Button>Extra Action</Button>;
 export class Home extends React.Component {
     state = {
         loadGeoLocation: false,
+        loadingPosts: false,
+        posts: [],
         error: ''
     }
     componentDidMount() {
@@ -32,7 +35,8 @@ export class Home extends React.Component {
         console.log(position);
         const { latitude, longitude } = position.coords;
         localStorage.setItem(POS_KEY, JSON.stringify({latitude, longitude}));
-        this.setState({loadGeoLocation: false, error: ''});
+        this.setState({loadingPosts: true, loadGeoLocation: false, error: ''});
+        this.loadNearbyPost();
     }
 
     onFailedLoadGeoLocation = (error) => {
@@ -45,9 +49,15 @@ export class Home extends React.Component {
             return <div>{this.state.error}</div>;
         } else if (this.state.loadGeoLocation) {
             return <Spin tip="Loading geo locations..."/>;
+        } else if (this.state.loadingPosts) {
+            return <Spin tip="Loading posts..."/>;
         } else {
             return <Gallery  images={imageList}/>;
         }
+    }
+
+    loadNearbyPost = () => {
+
     }
 
     render() {
