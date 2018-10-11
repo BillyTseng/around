@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tabs, Button, Spin } from 'antd';
+import { Tabs, Spin } from 'antd';
 import $ from 'jquery';
 import { API_ROOT, GEO_OPTIONS, POS_KEY, AUTH_PREFIX, TOKEN_KEY } from "../constant";
 import { Gallery } from "./Gallery";
@@ -68,17 +68,18 @@ export class Home extends React.Component {
         }
     }
 
-    loadNearbyPost = () => {
+    loadNearbyPost = (location, range) => {
         this.setState({loadingPosts: true});
-        const { latitude, longitude } = JSON.parse(localStorage.getItem(POS_KEY));
+        const { latitude, longitude } = location || JSON.parse(localStorage.getItem(POS_KEY));
+        const radius = range || 20;
         $.ajax({
-            url: `${API_ROOT}/search?lat=${latitude}&lon=${longitude}&range=20`,
+            url: `${API_ROOT}/search?lat=${latitude}&lon=${longitude}&range=${radius}`,
             method: 'GET',
             headers: {
                 Authorization: `${AUTH_PREFIX} ${localStorage.getItem(TOKEN_KEY)}`
             }
         }).then((response) => {
-            this.setState({ posts: response, loadingPosts: false, error: '' });
+            this.setState({ posts: response || [], loadingPosts: false, error: '' });
             console.log(response);
         }, (error) => {
             this.setState({ loadingPosts: false, error: error.responseText });
@@ -103,6 +104,8 @@ export class Home extends React.Component {
                         loadingElement={<div style={{ height: `100%` }} />}
                         containerElement={<div style={{ height: `600px` }} />}
                         mapElement={<div style={{ height: `100%` }} />}
+                        posts={this.state.posts}
+                        loadNearbyPost={this.loadNearbyPost}
                     />
                 </TabPane>
             </Tabs>
