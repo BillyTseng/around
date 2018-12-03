@@ -9,3 +9,7 @@ export const GEO_OPTIONS = {
 export const POS_KEY = 'POS_KEY';
 export const AUTH_PREFIX = 'Bearer';
 export const LOC_SHAKE = 0.02;
+export const FIXED_LOC = {
+    latitude: 37.336017,
+    longitude: -121.885308
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Tabs, Spin } from 'antd';
 import $ from 'jquery';
-import { API_ROOT, GEO_OPTIONS, POS_KEY, AUTH_PREFIX, TOKEN_KEY } from "../constant";
+import { API_ROOT, GEO_OPTIONS, POS_KEY, AUTH_PREFIX, TOKEN_KEY, FIXED_LOC } from "../constant";
 import { Gallery } from "./Gallery";
 import {CreatePostButton} from "./CreatePostButton";
 import { WrappedAroundMap} from "./AroundMap";
@@ -34,7 +34,7 @@ export class Home extends React.Component {
 
     onSuccessLoadGeoLocation = (position) => {
         console.log(position);
-        const { latitude, longitude } = position.coords;
+        const { latitude, longitude } = FIXED_LOC;
         localStorage.setItem(POS_KEY, JSON.stringify({latitude, longitude}));
         this.setState({loadingPosts: true, loadGeoLocation: false, error: ''});
         this.loadNearbyPost();
