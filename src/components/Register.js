@@ -133,7 +133,7 @@ class RegistrationForm extends React.Component {
 
                 <FormItem {...tailFormItemLayout}>
                     <Button type="primary" htmlType="submit">Register</Button>
-                    <p>I already have an account, go back to <Link to="/login">login</Link></p>
+                    <p>I already have an account, go back to <Link to={`${process.env.PUBLIC_URL}/around/login`}>login</Link></p>
                 </FormItem>
             </Form>
         );

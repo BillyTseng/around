@@ -19,7 +19,7 @@ class App extends Component {
     }
 
   render() {
-    console.log("isLoggedIn: " + this.state.isLoggedIn);
+    // console.log("isLoggedIn: " + this.state.isLoggedIn);
     return (
       <div className="App">
           <Header isLoggedIn={this.state.isLoggedIn} handleLogout={this.handleLogout}/>

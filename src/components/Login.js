@@ -52,7 +52,7 @@ class NormalLoginForm extends React.Component {
                     <Button type="primary" htmlType="submit" className="login-form-button">
                         Log in
                     </Button>
-                    Or <Link to="/register">register now!</Link>
+                    Or <Link to={`${process.env.PUBLIC_URL}/register`}>register now!</Link>
                 </FormItem>
             </Form>
         );
