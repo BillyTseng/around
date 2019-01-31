@@ -34,7 +34,7 @@ export class Home extends React.Component {
 
     onSuccessLoadGeoLocation = (position) => {
         console.log(position);
-        const { latitude, longitude } = FIXED_LOC;
+        const { latitude, longitude } = position.coords;
         localStorage.setItem(POS_KEY, JSON.stringify({latitude, longitude}));
         this.setState({loadingPosts: true, loadGeoLocation: false, error: ''});
         this.loadNearbyPost();
