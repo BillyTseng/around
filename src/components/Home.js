@@ -42,6 +42,8 @@ export class Home extends React.Component {
 
     onFailedLoadGeoLocation = (error) => {
         console.log(error);
+        const { latitude, longitude } = FIXED_LOC;
+        localStorage.setItem(POS_KEY, JSON.stringify({latitude, longitude}));
         this.setState({loadGeoLocation: false, error: 'Failed to load geo location!'});
     }
 
